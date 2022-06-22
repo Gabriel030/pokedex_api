@@ -12,7 +12,7 @@ import NotFoundError from './components/NotFoundError/NotFoundError'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+ 
 );
