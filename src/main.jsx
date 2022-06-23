@@ -10,6 +10,7 @@ import NotFoundError from './components/NotFoundError/NotFoundError'
 
 //rutas
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Detail from "./routes/Detail/Detail";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<App />}></Route>
           <Route path="home" element={<Home></Home>}></Route>
+          <Route path="detail/:id" element={<Detail></Detail>}></Route>
           <Route path = "*" element ={<NotFoundError/>} ></Route>
         </Routes>
       </BrowserRouter>

@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
+
+.link {
+
+text-decoration: none;
+
+}
 .card {
     position: relative;
     min-height: 14em;
     width: 320px;
     height: 414px;
     text-decoration: none;
+    text-align: center;
     border-radius: 0.75em;
     box-shadow: 0 3px 3px #0001;
     overflow: hidden;
