@@ -18,6 +18,11 @@
     padding: 20px;
 }
 
+.fondo{
+
+    background: #232631;
+
+}
 .poke{
     background-color: #1C1D23;
     border: 2px solid rgb(51, 51, 51);
