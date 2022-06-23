@@ -7,6 +7,8 @@ import style from './Detail.module.css'
 import React from 'react'
 
 const Detail = ({poke}) => {
+
+  
   return (
     
     

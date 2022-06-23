@@ -1,11 +1,23 @@
 import React from 'react'
-import LandinPage from './components/LandingPage/LandingPage'
+import LandingPage from './components/LandingPage/LandingPage'
+import {useState,createContext, useContext, useEffect} from 'react'
+import axios from 'axios'; 
+
 
 
 function App() {
   
+
+
+
+
+
   return (
-    <LandinPage></LandinPage>
+    
+
+      <LandingPage></LandingPage>
+    
+    
 
   )
 }

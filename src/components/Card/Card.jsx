@@ -41,60 +41,56 @@ const Card = ({poke}) => {
   return (
 
     <Link to = {`/detail/${poke.id}`} className={style.link} >
-    <div className={style.card} style={{ backgroundImage: `url(images/typesbkgm/${poke.types[0].type.name}.png)` }} >
-        <span className={style.name}>{poke.name.charAt(0).toUpperCase()+ poke.name.slice(1)}</span>
-        {
-          sprite ?
-          <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
-          :
-          <img src={`./images/random.gif`} alt="Img not found" height="190px" className={style.img} />
 
-        }
-        {/* type y su imagen */}
-        <span className={`${style.typetitle}  ${typesColors[2]}`}>Types</span>
-        <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
-        
-        <div className={style.types}>
-                {
-                    poke.types ? poke.types.map( el => {
-                        return(
-                          <>
-                            
-                            <img src={`./images/types/${el.type.name}.png`} alt="Types" height="80px" key={el}/>
-                          </>
-                        )
-                     }
-                    ) :
-                    <span>Types not found</span>
-                }
-            </div>
+        <div className={style.card} style={{ backgroundImage: `url(images/typesbkgm/${poke.types[0].type.name}.png)` }} >
+            <span className={style.name}>{poke.name.charAt(0).toUpperCase()+ poke.name.slice(1)}</span>
+            {
+              sprite ?
+              <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
+              :
+              <img src={`./images/random.gif`} alt="Img not found" height="190px" className={style.img} />
 
-            <span className={`${style.aboutitle} ${typesColors[poke.types[0]]}`}>About</span>
+            }
+            {/* type y su imagen */}
+            <span className={`${style.typetitle}  ${typesColors[2]}`}>Types</span>
+            <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
+            
+            <div className={style.types}>
+                    {
+                        poke.types ? poke.types.map( el => {
+                            return(
+                              <>
+                                
+                                <img src={`./images/types/${el.type.name}.png`} alt="Types" height="80px" key={el}/>
+                              </>
+                            )
+                        }
+                        ) :
+                        <span>Types not found</span>
+                    }
+                </div>
+
+                <span className={`${style.aboutitle} ${typesColors[poke.types[0]]}`}>About</span>
+              
+                <div className={style.about}>
+                    <div style={{display:'flex', flexDirection:'column'}}>
+                        <div style={{display:'flex', flexDirection:'row'}}>
+                            <img src={'images/cards/weight.svg'} alt='Weight Icon'/>
+                            <span className={style.pokweight}>{poke.weight / 10}kg</span>
+                        </div>
+                        <span className={style.weight}>Weight</span>
+                    </div>
+                    <div style={{display:'flex', flexDirection:'column', paddingLeft:'24%'}}>
+                        <div style={{display:'flex', flexDirection:'row'}}>
+                            <img src={'images/cards/height.svg'} alt='Height Icon'/>
+                            <span className={style.pokheight}>{poke.height / 10}m</span>
+                        </div>
+                        <span className={style.height}>Height</span>    
+                    </div>
+                </div>
           
-            <div className={style.about}>
-                <div style={{display:'flex', flexDirection:'column'}}>
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                        <img src={'images/cards/weight.svg'} alt='Weight Icon'/>
-                        <span className={style.pokweight}>{poke.weight / 10}kg</span>
-                    </div>
-                    <span className={style.weight}>Weight</span>
-                </div>
-                <div style={{display:'flex', flexDirection:'column', paddingLeft:'24%'}}>
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                        <img src={'images/cards/height.svg'} alt='Height Icon'/>
-                        <span className={style.pokheight}>{poke.height / 10}m</span>
-                    </div>
-                    <span className={style.height}>Height</span>    
-                </div>
-            </div>
-
-
-
-
-        
-      
-    </div>
-          </Link>
+        </div>
+      </Link>
   )
 }
 
