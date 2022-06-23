@@ -31,7 +31,7 @@ const Card = ({poke}) => {
       shadow: style.shadow
     }
 
-    let sprite;
+    let sprite = false;
     if(poke.id >= 1 && poke.id <= 100){
         sprite = true
     }
@@ -45,15 +45,15 @@ const Card = ({poke}) => {
         <div className={style.card} style={{ backgroundImage: `url(images/typesbkgm/${poke.types[0].type.name}.png)` }} >
             <span className={style.name}>{poke.name.charAt(0).toUpperCase()+ poke.name.slice(1)}</span>
             {
-              sprite ?
+              poke.id< 100 ?
               <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
               :
-              <img src={`./images/random.gif`} alt="Img not found" height="190px" className={style.img} />
+              <img src={`${poke.sprites.other.home.front_default}`}  height="190px" className={style.img} />
 
             }
             {/* type y su imagen */}
             <span className={`${style.typetitle}  ${typesColors[2]}`}>Types</span>
-            <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
+            
             
             <div className={style.types}>
                     {
@@ -68,9 +68,9 @@ const Card = ({poke}) => {
                         ) :
                         <span>Types not found</span>
                     }
-                </div>
+                </div>                                
 
-                <span className={`${style.aboutitle} ${typesColors[poke.types[0]]}`}>About</span>
+                <span className={`${style.aboutitle} `}>About</span>
               
                 <div className={style.about}>
                     <div style={{display:'flex', flexDirection:'column'}}>

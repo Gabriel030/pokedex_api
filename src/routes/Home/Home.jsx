@@ -6,7 +6,7 @@ import Detail from '../../routes/Detail/Detail'
 import {useContext} from 'react'
 import axios from 'axios'; 
 import Navbar from '../../components/Navbar/Navbar'
-import SearchBar from '../../components/SearchBar/SearchBar';
+
 
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
   //const [pokemon, setPokemon] = useState();
   
   const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
-  const extendedLimit = "?limit=100"
+  const extendedLimit = "?limit=150"
       
         
   
@@ -31,6 +31,8 @@ const Home = () => {
             return Promise.all(
               results.map( async (pokeData) => {
                 const pokemon = await axios(pokeData.url);
+                //si el id es mayor a 100, me tengo q traer una imagen de la api
+               
                 return pokemon
               })
             )
@@ -45,7 +47,7 @@ const Home = () => {
     return (
     <>
         <Navbar />
-        <SearchBar></SearchBar>
+        
         <div className = {style.home}>
                 {allPokemons.map(poke => {
                 return(
