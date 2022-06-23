@@ -1,0 +1,10 @@
+.nav{
+    height: 10vh;
+    background-color: #1C1D23;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+}

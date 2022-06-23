@@ -5,7 +5,8 @@ import Card from '../../components/Card/Card'
 import Detail from '../../routes/Detail/Detail'
 import {useContext} from 'react'
 import axios from 'axios'; 
-
+import Navbar from '../../components/Navbar/Navbar'
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 
 const Home = () => {
@@ -43,12 +44,12 @@ const Home = () => {
 
     return (
     <>
-        <h1>ACA VAN LAS CARDS </h1>
-
+        <Navbar />
+        <SearchBar></SearchBar>
         <div className = {style.home}>
                 {allPokemons.map(poke => {
                 return(
-
+                    
                      <Card key = {poke.data.id} poke = {poke.data}>
                         
                      </Card>
