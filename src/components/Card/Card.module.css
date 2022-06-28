@@ -32,9 +32,10 @@ text-decoration: none;
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   font-weight: bolder;
-  color: white;
+  color: rgb(255, 255, 255);
   padding-left: 4%;
   padding-top: 4%;
+  text-shadow: 3px 3px 2px  rgb(0, 0, 0);
 }
 
 .img {

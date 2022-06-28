@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
+
+.active{
+  filter: opacity(100%);
+  transition: all 0.2s ease;
+}
+.noactive{
+  filter: opacity(50%);
+}
+
+
+.home{
+  position: absolute;
+  bottom: 4%;
+  left: 38%;
+}
+
+.homebtn{
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  border: none;
+
+  padding: 16px 32px;
+  color: #fff;
+  font-family: 'Roboto', Arial;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  line-height: 1;
+  border-radius: 8px;
+
+  background-image: linear-gradient(45deg, #2378c9 10%, #133079 90%);
+  background-position: 90% 0;
+  box-shadow: 0 2px 8px -1px #09113f;
+  
+  opacity: 0;
+  animation: showText 1s 1s linear forwards;
+  transition: all 0.5s ease;
+}
+.homebtn:hover{
+  box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+  transform: translateY(-5px);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: [x0] 1.1fr [x1] 2fr [x2];
+    grid-template-rows: [y0] 60px [y1] 60px [y2] 2fr [y3] 1fr [y4];
+}
+
+.firstinfo{
+    font-family: 'Poppins', sans-serif;
+    width: 94%;
+    margin-left: 4%;
+    margin-top: 4%;
+    color: rgb(95, 95, 95);
+}
+
+.importantinfo{
+  margin-top: 4%;
+  display: grid;
+  grid-template-columns: [x0] 30vw [x1] 30vw [x2];
+}
+
+.apinfo{
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: min-content;
+  color: rgb(41, 41, 41);
+}
+
+.visual{
+  
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  grid-column: x0 / x1;
+  grid-row: y0 / y4;
+  height: 100vh;
+  background-color: #ececec;
+  
+}  
+
+.img{
+    grid-column: x0 / x1;
+    grid-row: y2 / y3;
+    height: 65vh;
+    margin-top: 4%;
+    filter: drop-shadow(8px 8px 8px rgb(107, 107, 107));
+}
+
+.name{
+  font-size: 40px;
+}
+
+.encabezado{
+    grid-column: x1 / x2;
+    grid-row: y0 / y1;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    padding-left: 8%;
+    padding-right: 8%;
+    color: rgb(41, 41, 41);
+}
+
+.sections{
+  grid-column: x1 / x2;
+  grid-row: y1 / y2;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.sections button{
+  width: 35%;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  background: none;
+  color: inherit;
+  border: none;
+  outline: inherit;
+}
+
+.sections span {
+  position: absolute;
+  bottom: -8px;
+  height: 4px;
+  width: 33%;
+  transition: all .35s ease-in-out;
+  height: 5px;
+  z-index: 1;
+  border-radius: 0 0 8px 8px;
+  background-color: rgba(15, 15, 170, 0.582);
+}
+
+
+.lineab{
+  left: 0%;
+}
+.linestat{
+  left: 33%
+}
+.linevol{
+  left: 67%;
+}
+
+
+
+.types{
+   display: flex;
+   justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 4%;
+}
+
+
+.stats{
+    grid-column: x1 / x2;
+    grid-row: y2 / y3;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-flow: column;
+    width: 500px;
+    margin-left: 6%;
+    margin-top: 6%;
+    color: rgb(41, 41, 41);
+}
+
+.stats .bar{
+    margin: 20px 0;
+    position: relative;
+}
+
+.stats .bar .info span{
+    font-size: 17px;
+    font-weight: 500;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    opacity: 0;
+    animation: showText 0.5s 1s linear forwards;
+}
+
+ /* Height and Weight */
+ 
+.about{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 4%;
+  margin-right: 40%;
+  opacity: 0;
+
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0, 0.5, 0, 1);
+  animation-fill-mode: both;
+  animation-name: slideLeft;
+  animation-delay: 1800ms;
+}
+
+.aboutwo{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 4%;
+  opacity: 0;
+
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0, 0.5, 0, 1);
+  animation-fill-mode: both;
+  animation-name: slideRight;
+  animation-delay: 2000ms;
+}
+
+
+.pokweight{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  margin-left: 8%;
+}
+
+.weight{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(51, 51, 51);
+}
+
+.pokheight{
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  margin-left: 8%;
+  
+}
+
+.height{
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 2vh;
+  width: 25vh;
+  color: rgb(51, 51, 51);
+}
+
+/* ANIMACIONES */
+
+@keyframes picImage {
+  from {
+  opacity: 0;
+  transform: scale(1.2) translateY(-1rem);
+  }
+  to {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  }
+}
+@keyframes slideDown {
+  from {
+  opacity: 0;
+  transform: translateY(-1rem);
+  }
+  to {
+  opacity: 1;
+  transform: translateY(0);
+  }
+}
+@keyframes slideLeft {
+  from {
+  opacity: 0;
+  transform: translateX(-1rem);
+  }
+  to {
+  opacity: 1;
+  transform: translateX(0);
+  }
+}
+@keyframes slideRight {
+  from {
+  opacity: 0;
+  transform: translateX(1rem);
+  }
+  to {
+  opacity: 1;
+  transform: translateX(0);
+  }
+}
+
+.descripok,
+.combatinfo,
+.breedinginfo,
+.animabil,
+.animoves,
+.animspecie,
+.animhabitat,
+.animgrowth,
+.animlocation {
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0, 0.5, 0, 1);
+  animation-fill-mode: both;
+}
+.img {
+  animation-duration: 750ms;
+  animation-timing-function: cubic-bezier(0, 0.5, 0.25, 1.25);
+  animation-fill-mode: both;
+  animation-name: picImage;
+}
+
+.descripok{
+  animation-name: slideDown;
+  animation-delay: 200ms;
+}
+.combatinfo,
+.animabil,
+.animoves {
+  animation-name: slideLeft;
+  animation-delay: 400ms;
+}
+.animabil {
+  animation-delay: 600ms;
+}
+.animoves {
+  animation-delay: 800ms;
+}
+
+.breedinginfo,
+.animspecie,
+.animhabitat,
+.animgrowth,
+.animlocation {
+  animation-name: slideRight;
+  animation-delay: 800ms;
+}
+.animspecie {
+  animation-delay: 1000ms;
+}
+.animhabitat {
+  animation-delay: 1100ms;
+}
+.animgrowth {
+  animation-delay: 1200ms;
+}
+.animlocation {
+  animation-delay: 1400ms;
+}
+
+
+
+/* Stats Progress Bar */
+
+  @keyframes showText {
+    100%{
+      opacity: 1;
+    }
+  }
+  .stats .bar .progress{
+    height: 10px;
+    width: 100%;
+    left: 0;
+    background: #f0f0f0;
+    position: relative;
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05),
+                0 1px rgba(255,255,255,0.8);
+    animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
+  }
+  @keyframes animate {
+    100%{
+      transform: scaleX(1);
+    }
+  }
+  .bar .progress span{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 10px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: #6665ee;
+    animation: animate 1s 1s cubic-bezier(1,0,0.5,1) forwards;
+  }
+
+  .fijo{
+    position: fixed;
+    background-color: #ececec;
+    
+    height: 100%;
+    width: 479px;
+    
+   
+  }
+
+  .progress span::before{
+    position: absolute;
+    content: "";
+    top: -10px;
+    right: 0;
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-top-color: #000;
+    opacity: 0;
+    animation: showText2 0.5s 1.5s linear forwards;
+  }
+  .progress span::after{
+    position: absolute;
+    top: -28px;
+    right: 0;
+    font-weight: 500;
+    background: #000;
+    color: #fff;
+    padding: 1px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+    opacity: 0;
+    animation: showText2 0.5s 1.5s linear forwards;
+  }
+
+  @keyframes showText2 {
+    100%{
+      opacity: 1;
+    }
+  }
+
+  .hp::after{
+    content: attr(per);
+  }
+  .attack::after{
+    content: attr(per);
+  }
+  .defense::after{
+    content: attr(per);
+  }
+  .speed::after{
+    content: attr(per);
+  }
+
+
+
+  /* Evolutions */
+
+  .evolutions{
+    grid-column: x1 / x2;
+    grid-row: y2 / y3;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 2%;
+  }
+  
+  .noevolution{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2em;
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  /* Gif de carga */
+.loading{
+  height: 13rem;
+  position: absolute;
+  padding-top: 5%;
+  left: 43%;
+}
+
+.loadingtext{
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgb(43, 43, 43);
+}
