@@ -4,17 +4,23 @@ import {Link} from 'react-router-dom'
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Logo from '/images/palanding.png';
 
-const Navbar = () => {
+
+const Navbar = ({allPokemons, name, setName, filterByName}) => {
+
+
+
+
+
   return (
   
       <nav className={style.nav}>
-        <Link to='/'>
+        <Link to='/home'>
                 <span className={style.landinglink}>
                     <img id="logoPoke" src={Logo} width="120" alt="landing" />
                 </span>
             </Link>
 
-            <SearchBar></SearchBar>
+            <SearchBar allPokemons ={allPokemons} name ={name} setName={setName} filterByName={filterByName}></SearchBar>
     </nav>
     
     

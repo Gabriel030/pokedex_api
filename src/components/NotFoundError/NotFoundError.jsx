@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
+ const NotFoundError =  () => {
 
-export default class NotFoundError extends Component {
-  render() {
+
+  
     return (
       <div>
         <h1>NO SE ENCONTRO LA PAGINA</h1>
@@ -9,4 +10,7 @@ export default class NotFoundError extends Component {
       </div>
     )
   }
-}
+
+
+
+export default NotFoundError
