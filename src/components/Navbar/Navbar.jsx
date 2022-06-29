@@ -5,7 +5,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import Logo from '/images/palanding.png';
 
 
-const Navbar = ({allPokemons, name, setName, filterByName}) => {
+const Navbar = ({ name, setName}) => {
 
 
 
@@ -20,7 +20,7 @@ const Navbar = ({allPokemons, name, setName, filterByName}) => {
                 </span>
             </Link>
 
-            <SearchBar allPokemons ={allPokemons} name ={name} setName={setName} filterByName={filterByName}></SearchBar>
+            <SearchBar name ={name} setName={setName} ></SearchBar>
     </nav>
     
     

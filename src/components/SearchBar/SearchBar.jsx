@@ -4,7 +4,7 @@ import {useState} from 'react'
 
 
 
-const SearchBar = ({name, setName, filterByName}) => {
+const SearchBar = ({name, setName}) => {
 
    
 
@@ -12,7 +12,7 @@ const SearchBar = ({name, setName, filterByName}) => {
     
   return (
     <div className={style.searchBox}>
-            <form onSubmit={(e) => filterByName(e)}>
+            <form >
                 <input 
                     className={style.searchTxt}
                     type="text" 

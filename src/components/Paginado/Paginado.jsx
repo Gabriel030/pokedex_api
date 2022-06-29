@@ -1,19 +1,19 @@
 import React from 'react'
 import style from './Paginado.module.css'
 
-export default function Paginado({allPokemons, pageNumber,goToNumber}){
+export default function Paginado(resultsFiltered ,{pageNumber,goToNumber}){
     
-    console.log("aca empieza macho")
-    console.log(allPokemons)
-    console.log("aca empieza termina")
+    /* console.log("aca empieza macho")
+    console.log(resultsFiltered)
+    console.log("aca empieza termina") */
     const pageNumbers = []
     
 
-    for (let i = 0 ; i < 200 / 20 ; i++){
+    for (let i = 0 ; i < 100 / 20 ; i++){
         pageNumbers.push(i + 1)
     }
 
-    console.log(pageNumbers)
+   
 
 
 

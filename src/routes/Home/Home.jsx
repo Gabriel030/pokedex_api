@@ -12,13 +12,14 @@ import PokeNotFound from '../../components/PokeNotFound/PokeNotFound';
 
 const Home = () => {
     
-    const baseURL = 'https://pokeapi.co/api/v2/pokemon/'
+    const baseURL = 'https://pokeapi.co/api/v2/pokemon/?limit=100'
     const extendedLimit = "?limit=150"
             
         
     const  [name, setName] = useState("") // es lo que escribe el usuario
     const  [pokeByName, setPokeByName] = useState("") // es el poke q traje con el name
     const  [errorPokeNotFound, setErrorPokeNotFound] = useState(false);
+    const  [resultsFiltered, setResultsFiltered] = useState([]);
 
     const  [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
     const  [nextPageUrl, setNextPageUrl] = useState();
@@ -28,18 +29,19 @@ const Home = () => {
     //const [pokemon, setPokemon] = useState();
 
     
+    
         
   
     useEffect( () => {
 
         const grabData = async () => {
+
             setErrorPokeNotFound(false)
             console.log('running the useEffect')
-            const { data } = await axios(currentPageUrl)
+            const { data } = await axios(baseURL)
             const { results } = data
 
-            setNextPageUrl(data.next)
-            setPreviousPageUrl(data.previous)
+            
 
         return Promise.all(
             
@@ -51,65 +53,71 @@ const Home = () => {
             })
         )
         }
-
+        
         grabData()
+        
             .then(data => {
            // console.log(data)
             setAllPokemons(data)
+
+           
+            
+        }).then(() => {
+            if(!name){
+                console.log("no hay name")
+                setResultsFiltered(allPokemons)
+                console.log(resultsFiltered)
+            }else{
+                let laData = []
+                console.log("HAY NAME")
+                laData = allPokemons.filter( (poke) =>   poke.data.name.includes(name)) 
+                setResultsFiltered(laData)
+        
+        
+        
+
+            }
         })
 
-    }, [currentPageUrl])
+    }, [resultsFiltered])
+
+
+    
+    
 
 
 
-    const filterByName = async (e) => {
-            e.preventDefault();
-            setErrorPokeNotFound(false)
-            console.log("LLEGUE ACA")
-            
 
-            try {
-                if(name ==""){
+    console.log(allPokemons)
+    console.log(resultsFiltered)
 
-                    setCurrentPageUrl('https://pokeapi.co/api/v2/pokemon/')
-                }else{
-                    const {data} = await axios.get(baseURL+name)
-                    setPokeByName(data)
-                    
-                }
-            
-            
-            } catch (error) {
-                setErrorPokeNotFound(true)
-                console.log(error)
-            }
-            
-            
-                       
-        }
+        
+
+
+
 
 
     function goToNumber (num) {
         const offset = (num*20)-20
         setPageNumber(num)
-        setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon/?limit=200&offset=${offset}`)
+        setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon/?limit=100&offset=${offset}`)
     }
 
-    function goToNextPage(){
+   /*  function goToNextPage(){
         setCurrentPageUrl(nextPageUrl)
       }
 
       function goToPreviousPage(){
         setCurrentPageUrl(previousPageUrl)
       }
-      console.log(pokeByName)
+       */
       
       
     return (
     <div className = {style.fondo}>
-        <Navbar allPokemons = {allPokemons} name ={name} setName={setName} filterByName = {filterByName}></Navbar>
+        <Navbar name ={name} setName={setName} ></Navbar>
         
-        <Paginado allPokemons = {allPokemons} pageNumber = {pageNumber} goToNumber ={goToNumber}></Paginado>
+        <Paginado resultsFiltered = {resultsFiltered} pageNumber = {pageNumber} goToNumber ={goToNumber}></Paginado>
         
         
 
@@ -118,25 +126,15 @@ const Home = () => {
 
         {
 
-            
-            pokeByName != ""? (
-                <Card key = {pokeByName.id} poke = {pokeByName}></Card>
-            )
-            : ( errorPokeNotFound ? (
-
-                <PokeNotFound></PokeNotFound>
-                
-               )
-               :
-               
-               allPokemons.map(poke => {
+                                     
+               resultsFiltered.map(poke => {
                 return(
                     
                     
                      <Card key = {poke.data.id} poke = {poke.data}></Card>
                      
                     )})
-            )
+            
         }
                 
      
