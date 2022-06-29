@@ -38,3 +38,30 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+.sortfilter{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1%;
+}
+
+.sortfilter select option{
+    padding: 3%;
+}
+
+select {
+    cursor: pointer;
+    box-shadow: none;
+    background: #1C1D23;
+    width: 8%;
+    height: 4%;
+    font-size: 0.8em;
+    padding-top: 1em;
+    padding-right: 1.26em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    color: white;
+}
