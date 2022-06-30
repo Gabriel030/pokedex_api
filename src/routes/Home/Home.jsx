@@ -15,6 +15,7 @@ const Home = () => {
     
     const baseURL = 'https://pokeapi.co/api/v2/pokemon/?limit=100'
     const extendedLimit = "?limit=150"
+    const  [order, setOrder] = useState("normal")
     const  [sortedArray,setSortedArray] = useState([])
     const  [types, setTypes] = useState([])
     const  [name, setName] = useState("") // es lo que escribe el usuario
@@ -69,26 +70,24 @@ const Home = () => {
         }
         
         grabData()
-
             .then(data => {
            // console.log(data)
             setAllPokemons(data)
             setResultsFiltered(data)
-           
-            
         })
-
     }, [])
+
+
 
     useEffect(() => {
         console.log("volvi  aca gil")
         if(!name){
             console.log("no hay name")
             if(sortedArray.length === 0){
-                setResultsFiltered(sortedArray)
-            } else{
-
                 setResultsFiltered(allPokemons)
+            } else{
+                console.log("aca cambie el filtro papa")
+                setResultsFiltered(sortedArray)
             }  
 
         }else{
@@ -97,50 +96,27 @@ const Home = () => {
             laData = allPokemons.filter( (poke) =>   poke.data.name.includes(name)) 
             setResultsFiltered(laData)
             
-            
-    
 
         }
 
-    },[name])
+    },[name, order,resultsFiltered])
     
-    
-
-
-
-
-        
-    function reloadAll  ()  {
-        setName("")
-        setSortedArray(allPokemons)
-        setResultsFiltered(allPokemons)
-
-        
-    }
-
-    function handleFilterByType (e) {
-        
-        if(e.target.value === "All"){
-            setResultsFiltered(allPokemons)
-        }else{
-            const filterByType = allPokemons.filter(poke => {
-            
-                return  poke.data.types[0].type.name.includes(e.target.value)
-           }
-           )
-           setResultsFiltered(filterByType)
-
-
-        }
-        
-    }
-
-    function handleSort (e) {
-        
-
+    useEffect(() => {
 
         let sorted
-        switch (e.target.value) {
+        switch (order) {
+            case 'normal': 
+                        console.log("ASC")
+                        sorted = resultsFiltered.sort((a,b) => {
+                        if(a.data.id > b.data.id){
+                            return 1;
+                        }
+                        if(b.data.id > a.data.id){
+                            return -1;
+                        }
+                        return 0;
+                        })
+                    break;
             case 'asc': 
                         
                         console.log("ASC")
@@ -153,9 +129,10 @@ const Home = () => {
                         }
                         return 0;
                         })
-                
+                        
                 break;
             case 'desc':
+                console.log("DESC")
                         sorted = resultsFiltered.sort((a,b) => {
                         if(a.data.name > b.data.name){
                             return -1;
@@ -164,21 +141,67 @@ const Home = () => {
                             return +1;
                         }
                         return 0;
-                        })        
-
-
-
+                        })      
+                    
                 break;
 
         
-            default:
-                break;
+                default:
+                    break;
+
         }
-        console.log(sortedArray)
-        console.log(sorted)
+
         setSortedArray(sorted)
+        console.log("hice la asignacion??")
+       setResultsFiltered(sorted)
         console.log(resultsFiltered)
+    },[order])
+    
+
+
         
+    function reloadAll  ()  {
+        //averiguar como poner el valor de ordenamiento en normal y el de typos en alltypes
+        
+
+        setName("")
+        handleFilterByType("All")
+        setSortedArray(allPokemons)
+        setResultsFiltered(allPokemons)
+
+        
+    }
+
+    function handleFilterByType (e) {
+        
+        if(e === "All"){
+            //averiguar como poner el valor del input de ordenamiento o sort en value = "normal"
+            setResultsFiltered(allPokemons)
+        }else{
+            const filterByType = allPokemons.filter(poke => {
+            
+                return  poke.data.types[0].type.name.includes(e)
+           }
+           )
+           setResultsFiltered(filterByType)
+
+
+        }
+        
+    }
+
+    const handleSort = (e) => {
+        
+        switch(e.target.value){
+            case 'normal': setOrder('normal')
+            break;
+            case 'asc': setOrder('asc')
+            break;
+            case 'desc': setOrder('desc')
+            break;
+            default :
+            break;
+        }
        
 
 
@@ -219,7 +242,7 @@ const Home = () => {
                     <option value="Api">API</option>
                     <option value="Created">Created</option>
                 </select>
-                <select onChange={(e) => handleFilterByType(e)}>
+                <select onChange={(e) => handleFilterByType(e.target.value)}>
                     <option value="All">all types</option>
                     {
                         types.map( type => (
@@ -251,7 +274,7 @@ const Home = () => {
                    ?
                    (
                     <h3>
-                        <img src="images/searchNotFound.gif" className={style.loading} alt="Loading..." />
+                        <img src="images/searchNotFound.gif" className={style.loading} alt="NotFound..." />
                     </h3>
                    )
                    :
