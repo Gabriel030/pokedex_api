@@ -99,7 +99,7 @@ const Home = () => {
 
         }
 
-    },[name, order,resultsFiltered])
+    },[name])
     
     useEffect(() => {
 
