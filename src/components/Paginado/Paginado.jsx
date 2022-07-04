@@ -23,7 +23,7 @@ export default function Paginado(resultsFiltered ,{pageNumber,goToNumber}){
                 {
                     pageNumbers && pageNumbers.map( number => (
                         <li key={number} style={{ listStyle:'none' }}>
-                           <button className={style.buttons} style={ pageNumber === number ? {color:"white"} : {color: "#797979"}}onClick={() => goToNumber(number)}>{number}</button>
+                           <button className={style.buttons} style={ pageNumber === number ? {color:"white"} : {color: "#797979"}}>{number}</button>
                         </li>
                     ))
                 }
@@ -32,3 +32,8 @@ export default function Paginado(resultsFiltered ,{pageNumber,goToNumber}){
     )
 
 }
+
+
+
+
+

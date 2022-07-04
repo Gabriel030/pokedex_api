@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Home.module.css'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useMemo} from 'react'
 import Card from '../../components/Card/Card'
 import Detail from '../../routes/Detail/Detail'
 import {useContext} from 'react'
@@ -16,9 +16,12 @@ const Home = () => {
     const baseURL = 'https://pokeapi.co/api/v2/pokemon/?limit=100'
     const extendedLimit = "?limit=150"
     const  [order, setOrder] = useState("normal")
-    const  [sortedArray,setSortedArray] = useState([])
+    
+    
     const  [types, setTypes] = useState([])
-    const  [name, setName] = useState("") // es lo que escribe el usuario
+    const  [selectedType, setSelectedType] = useState("All")
+
+    const  [searchTerm, setSearchTerm] = useState("") // es lo que escribe el usuario
     const  [pokeByName, setPokeByName] = useState("") // es el poke q traje con el name
     const  [errorPokeNotFound, setErrorPokeNotFound] = useState(false);
     const  [resultsFiltered, setResultsFiltered] = useState([]);
@@ -77,160 +80,128 @@ const Home = () => {
         })
     }, [])
 
+//ACA YA TENGO UNA VARIABLE allPokemons que tiene a todos los pokemones
+//-----------------------------------------------------------------------------------------------------------------
+
+let filtered = allPokemons
 
 
-    useEffect(() => {
-        console.log("volvi  aca gil")
-        if(!name){
-            console.log("no hay name")
-            if(sortedArray.length === 0){
-                setResultsFiltered(allPokemons)
-            } else{
-                console.log("aca cambie el filtro papa")
-                setResultsFiltered(sortedArray)
-            }  
+const filteredList = useMemo(() =>{
+    
+    if (searchTerm === ""){
 
-        }else{
-            let laData = []
-            console.log("HAY NAME")
-            laData = allPokemons.filter( (poke) =>   poke.data.name.includes(name)) 
-            setResultsFiltered(laData)
+             // INICIO FILTRO ORDENAMIENTO 
+             let sorted
+             switch (order) {
+                 case 'normal': 
+                             console.log("normal")
+                             filtered.sort((a,b) => {
+                             if(a.data.id > b.data.id){
+                                 return 1;
+                             }
+                             if(b.data.id > a.data.id){
+                                 return -1;
+                             }
+                             return 0;
+                             })
+                      break;
+                         
+                 case 'asc': 
+                             
+                             console.log("ASC")
+                             filtered.sort((a,b) => {
+                             if(a.data.name > b.data.name){
+                                 return 1;
+                             }
+                             if(b.data.name > a.data.name){
+                                 return -1;
+                             }
+                             return 0;
+                             })
+                     break;   
+                     
+                 case 'desc':
+                     console.log("DESC")
+                             filtered.sort((a,b) => {
+                             if(a.data.name > b.data.name){
+                                 return -1;
+                             }
+                             if(b.data.name > a.data.name){
+                                 return +1;
+                             }
+                             return 0;
+                             })      
+                         
+                     break;
+     
+             
+                     default:
+                         break;
+                             
+             }
+
+
+
+
+            //FILTRO POR TYPE
+            if(selectedType != "All" ){
+
+                filtered = allPokemons.filter(poke => {
+            
+                    return  poke.data.types[0].type.name.includes(selectedType)
+            })
+            return filtered
+            
+            }//FIN FILTRO POR TYPE
+
+
+           
+
             
 
-        }
-
-    },[name])
-    
-    useEffect(() => {
-
-        let sorted
-        switch (order) {
-            case 'normal': 
-                        console.log("ASC")
-                        sorted = resultsFiltered.sort((a,b) => {
-                        if(a.data.id > b.data.id){
-                            return 1;
-                        }
-                        if(b.data.id > a.data.id){
-                            return -1;
-                        }
-                        return 0;
-                        })
-                    break;
-            case 'asc': 
-                        
-                        console.log("ASC")
-                        sorted = resultsFiltered.sort((a,b) => {
-                        if(a.data.name > b.data.name){
-                            return 1;
-                        }
-                        if(b.data.name > a.data.name){
-                            return -1;
-                        }
-                        return 0;
-                        })
-                        
-                break;
-            case 'desc':
-                console.log("DESC")
-                        sorted = resultsFiltered.sort((a,b) => {
-                        if(a.data.name > b.data.name){
-                            return -1;
-                        }
-                        if(b.data.name > a.data.name){
-                            return +1;
-                        }
-                        return 0;
-                        })      
-                    
-                break;
-
-        
-                default:
-                    break;
-
-        }
-
-        setSortedArray(sorted)
-        console.log("hice la asignacion??")
-       setResultsFiltered(sorted)
-        console.log(resultsFiltered)
-    },[order])
-    
 
 
-        
-    function reloadAll  ()  {
-        //averiguar como poner el valor de ordenamiento en normal y el de typos en alltypes
-        
-
-        setName("")
-        handleFilterByType("All")
-        setSortedArray(allPokemons)
-        setResultsFiltered(allPokemons)
-
-        
+            return allPokemons
     }
 
-    function handleFilterByType (e) {
-        
-        if(e === "All"){
-            //averiguar como poner el valor del input de ordenamiento o sort en value = "normal"
-            setResultsFiltered(allPokemons)
-        }else{
-            const filterByType = allPokemons.filter(poke => {
-            
-                return  poke.data.types[0].type.name.includes(e)
-           }
-           )
-           setResultsFiltered(filterByType)
+    filtered = allPokemons.filter(p => p.data.name.includes(searchTerm) )
+    return filtered
 
 
-        }
-        
-    }
-
-    const handleSort = (e) => {
-        
-        switch(e.target.value){
-            case 'normal': setOrder('normal')
-            break;
-            case 'asc': setOrder('asc')
-            break;
-            case 'desc': setOrder('desc')
-            break;
-            default :
-            break;
-        }
-       
+},[allPokemons, searchTerm, selectedType, order])
 
 
-    }
 
 
-    function goToNumber (num) {
-        const offset = (num*20)-20
-        setPageNumber(num)
-        setCurrentPageUrl(`https://pokeapi.co/api/v2/pokemon/?limit=100&offset=${offset}`)
-    }
 
-   /*  function goToNextPage(){
-        setCurrentPageUrl(nextPageUrl)
-      }
 
-      function goToPreviousPage(){
-        setCurrentPageUrl(previousPageUrl)
-      }
-       */
-      
+const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
+}
+
+const handleType = (e) => {
+    console.log(e.target.value)
+    setSelectedType(e.target.value)
+}
+
+
+const handleOrder = (e) => {
+    console.log(e.target.value)
+    setOrder(e.target.value)
+
+}
+
+
+
+     
       
     return (
     <div className = {style.fondo}>
-        <Navbar name ={name} setName={setName} ></Navbar>
-        <button onClick={() => reloadAll()} className={style.poke}><img src={poke} alt="pokebola" width='20px'/> Reload all</button>
+        <Navbar searchTerm ={searchTerm} handleSearch={handleSearch} ></Navbar>
+        <button  className={style.poke}><img src={poke} alt="pokebola" width='20px'/> Reload all</button>
 
         <div className={style.sortfilter}>
-                <select onChange={(e) => handleSort(e)}>
+                <select onChange={(e)=> handleOrder(e)}>
                     <option value="normal">Normal</option>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
@@ -242,7 +213,7 @@ const Home = () => {
                     <option value="Api">API</option>
                     <option value="Created">Created</option>
                 </select>
-                <select onChange={(e) => handleFilterByType(e.target.value)}>
+                <select onChange= {(e) => handleType(e)}>
                     <option value="All">all types</option>
                     {
                         types.map( type => (
@@ -253,43 +224,23 @@ const Home = () => {
             </div>
 
 
-        <Paginado resultsFiltered = {resultsFiltered} pageNumber = {pageNumber} goToNumber ={goToNumber}></Paginado>
+        <Paginado resultsFiltered = {resultsFiltered} pageNumber = {pageNumber} ></Paginado>
         
         
 
 
         <div className={style.home}>
 
-            {/* Si aun no cargo allPokemons, entonces muestro el loading */}
-                {allPokemons.length === 0 
-                ? 
-                (
-                    <h3>
-                        <img src={Loading} className={style.loading} alt="Loading..." />
-                    </h3>
-                ) 
-                :
-                 
-                   resultsFiltered.length === 0 
-                   ?
-                   (
-                    <h3>
-                        <img src="images/searchNotFound.gif" className={style.loading} alt="NotFound..." />
-                    </h3>
-                   )
-                   :
-                   (
-                    /* si ya cargo el allPokemons entonces mapeo la variable */
-                    resultsFiltered.map(poke => {
+                {
+                    filteredList.map(poke => {
                         return (
                             <Card key={poke.data.id} poke={poke.data}></Card>
                         )
 
                     })
-                   )
-
                 }
-
+               
+                
             </div>
 
     </div>

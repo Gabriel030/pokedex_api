@@ -4,11 +4,8 @@ import {useState} from 'react'
 
 
 
-const SearchBar = ({name, setName}) => {
+const SearchBar = ({searchTerm, handleSearch}) => {
 
-   
-
-  
     
   return (
     <div className={style.searchBox}>
@@ -17,8 +14,8 @@ const SearchBar = ({name, setName}) => {
                     className={style.searchTxt}
                     type="text" 
                     placeholder="Search Pokemon..."
-                    value = {name}
-                    onChange={ (e) => setName(e.target.value)}
+                    value = {searchTerm}
+                    onChange={ (e) => handleSearch(e)}
                 />
                 <button type="submit" className={style.searchBtn} style={{ outline: 'none' }}>
                     <i className="fas fa-search" ></i>
