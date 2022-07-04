@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '../Card/Card.module.css'
 import { Link } from "react-router-dom";
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -61,7 +61,7 @@ const Card = ({poke}) => {
                             return(
                               <>
                                 
-                                <img src={`./images/types/${el.type.name}.png`} alt="Types" height="80px" key={el}/>
+                                <img src={`./images/types/${el.type.name}.png`} alt="Types" height="80px" key={el.type.name}/>
                               </>
                             )
                         }

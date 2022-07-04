@@ -1,36 +1,31 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import style from './Home.module.css'
-import {useEffect, useState, useMemo} from 'react'
+import {useEffect, useState, useMemo, useRef} from 'react'
 import Card from '../../components/Card/Card'
 import Detail from '../../routes/Detail/Detail'
-import {useContext} from 'react'
 import axios from 'axios'; 
 import Navbar from '../../components/Navbar/Navbar'
 import Paginado from '../../components/Paginado/Paginado'
 import PokeNotFound from '../../components/PokeNotFound/PokeNotFound';
 import Loading from '/images/pokeLoading.gif';
 import poke from '/images/pokebola.png';
+import game from '/images/game.png';
+import { v4 as uuidv4 } from 'uuid';
 
 const Home = () => {
     
     const baseURL = 'https://pokeapi.co/api/v2/pokemon/?limit=100'
-    const extendedLimit = "?limit=150"
     const  [order, setOrder] = useState("normal")
-    
-    
     const  [types, setTypes] = useState([])
     const  [selectedType, setSelectedType] = useState("All")
-
     const  [searchTerm, setSearchTerm] = useState("") // es lo que escribe el usuario
-    const  [pokeByName, setPokeByName] = useState("") // es el poke q traje con el name
     const  [errorPokeNotFound, setErrorPokeNotFound] = useState(false);
-    const  [resultsFiltered, setResultsFiltered] = useState([]);
-
-    const  [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon/');
-    const  [nextPageUrl, setNextPageUrl] = useState();
-    const  [previousPageUrl, setPreviousPageUrl] = useState()
-    const  [pageNumber, setPageNumber] = useState(1)
+    const  [currentPage, setCurrentPage] = useState(1)
     const  [allPokemons, setAllPokemons] = useState([])
+    const  orderRef = useRef() 
+    const  typeRef = useRef()
+
     //const [pokemon, setPokemon] = useState();
 
     
@@ -38,14 +33,13 @@ const Home = () => {
         const getTypes = async () => {
            
             try {
-                
+           
                 const {data} = await axios("https://pokeapi.co/api/v2/type/")
                 setTypes(data.results)
             } catch (e) {
                 console.log(e)
             }
         }
-
         getTypes()
 
     },[])
@@ -76,7 +70,7 @@ const Home = () => {
             .then(data => {
            // console.log(data)
             setAllPokemons(data)
-            setResultsFiltered(data)
+           
         })
     }, [])
 
@@ -91,7 +85,7 @@ const filteredList = useMemo(() =>{
     if (searchTerm === ""){
 
              // INICIO FILTRO ORDENAMIENTO 
-             let sorted
+            
              switch (order) {
                  case 'normal': 
                              console.log("normal")
@@ -140,9 +134,6 @@ const filteredList = useMemo(() =>{
                              
              }
 
-
-
-
             //FILTRO POR TYPE
             if(selectedType != "All" ){
 
@@ -150,26 +141,24 @@ const filteredList = useMemo(() =>{
             
                     return  poke.data.types[0].type.name.includes(selectedType)
             })
+            setCurrentPage(1)
             return filtered
             
             }//FIN FILTRO POR TYPE
 
-
-           
-
-            
-
-
-
+            setCurrentPage(1)
             return allPokemons
     }
 
     filtered = allPokemons.filter(p => p.data.name.includes(searchTerm) )
+    setCurrentPage(1)
     return filtered
 
 
 },[allPokemons, searchTerm, selectedType, order])
 
+const indexOfLastPokemon =  currentPage * 20 ;
+const indexOfFirstPokemon = indexOfLastPokemon - 20 ;
 
 
 
@@ -191,6 +180,19 @@ const handleOrder = (e) => {
 
 }
 
+const reloadAll =  () =>  {
+
+    setSearchTerm("")
+    
+    setSelectedType("All")
+    typeRef.current.value = "All"
+    setOrder('normal')
+    orderRef.current.value = "normal"
+    setCurrentPage(1)
+    
+
+}
+
 
 
      
@@ -198,10 +200,12 @@ const handleOrder = (e) => {
     return (
     <div className = {style.fondo}>
         <Navbar searchTerm ={searchTerm} handleSearch={handleSearch} ></Navbar>
-        <button  className={style.poke}><img src={poke} alt="pokebola" width='20px'/> Reload all</button>
+        <button  onClick ={() => reloadAll()} className={style.poke}><img src={poke} alt="pokebola" width='20px'/> Reload all</button>
+
+        <Link to='/game' style={{textDecoration: 'none'}} className={style.game}><button className={style.poke}><img src={game} alt="Who's that Pokemon" width='100px'/></button></Link>
 
         <div className={style.sortfilter}>
-                <select onChange={(e)=> handleOrder(e)}>
+                <select ref ={orderRef} onChange={(e)=> handleOrder(e)}>
                     <option value="normal">Normal</option>
                     <option value="asc">A - Z</option>
                     <option value="desc">Z - A</option>
@@ -213,7 +217,7 @@ const handleOrder = (e) => {
                     <option value="Api">API</option>
                     <option value="Created">Created</option>
                 </select>
-                <select onChange= {(e) => handleType(e)}>
+                <select ref = {typeRef} onChange= {(e) => handleType(e)}>
                     <option value="All">all types</option>
                     {
                         types.map( type => (
@@ -224,7 +228,7 @@ const handleOrder = (e) => {
             </div>
 
 
-        <Paginado resultsFiltered = {resultsFiltered} pageNumber = {pageNumber} ></Paginado>
+        <Paginado filteredList = {filteredList} currentPage = {currentPage} setCurrentPage ={setCurrentPage} ></Paginado>
         
         
 
@@ -232,9 +236,9 @@ const handleOrder = (e) => {
         <div className={style.home}>
 
                 {
-                    filteredList.map(poke => {
+                    filteredList.slice(indexOfFirstPokemon, indexOfLastPokemon).map(poke => {
                         return (
-                            <Card key={poke.data.id} poke={poke.data}></Card>
+                            <Card key={ poke.data.id} poke={poke.data}></Card>
                         )
 
                     })
