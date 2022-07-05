@@ -148,12 +148,14 @@ const filteredList = useMemo(() =>{
 
             setCurrentPage(1)
             return allPokemons
+    }else {
+        filtered = allPokemons.filter(p => p.data.name.includes(searchTerm) )
+        setCurrentPage(1)
+        return filtered
+
     }
 
-    filtered = allPokemons.filter(p => p.data.name.includes(searchTerm) )
-    setCurrentPage(1)
-    return filtered
-
+    
 
 },[allPokemons, searchTerm, selectedType, order])
 
@@ -181,7 +183,7 @@ const handleOrder = (e) => {
 }
 
 const reloadAll =  () =>  {
-
+    
     setSearchTerm("")
     
     setSelectedType("All")

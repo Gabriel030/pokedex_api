@@ -8,9 +8,6 @@ import Logo from '/images/palanding.png';
 const Navbar = ({ searchTerm, handleSearch}) => {
 
 
-
-
-
   return (
   
       <nav className={style.nav}>

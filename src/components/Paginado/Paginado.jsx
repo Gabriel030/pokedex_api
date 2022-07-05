@@ -3,19 +3,18 @@ import style from './Paginado.module.css'
 
 export default function Paginado({filteredList, currentPage, setCurrentPage}){
     
-    /* console.log("aca empieza macho")
-    console.log(resultsFiltered)
-    console.log("aca empieza termina") */
     const pageNumbers = []
     
-
+    console.log(filteredList)
     for (let i = 0 ; i < filteredList.length / 20 ; i++){
         pageNumbers.push(i + 1)
     }
 
-   
-
-
+    /*
+    1 - 1 20
+    2- 21 
+    3 - 40 59
+    */
 
     return(
         <nav >
@@ -23,8 +22,12 @@ export default function Paginado({filteredList, currentPage, setCurrentPage}){
                 {
                     pageNumbers && pageNumbers.map( number => (
                         <li key={number} style={{ listStyle:'none' }}>
-                           <button className={style.buttons} style={ currentPage === number ? {color:"white"} : {color: "#797979"}}
-                            onClick = {(e) => setCurrentPage(number)}   >{number}</button>
+                           <button 
+                                className={style.buttons} 
+                                style={ currentPage === number ? {color:"white"} : {color: "#797979"}}
+                                onClick={() => setCurrentPage(number)}>
+                                    {number}
+                                    </button>
                         </li>
                     ))
                 }
@@ -33,8 +36,3 @@ export default function Paginado({filteredList, currentPage, setCurrentPage}){
     )
 
 }
-
-
-
-
-

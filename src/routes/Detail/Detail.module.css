@@ -140,7 +140,7 @@
   position: absolute;
   bottom: -8px;
   height: 4px;
-  width: 33%;
+  width: 50%;
   transition: all .35s ease-in-out;
   height: 5px;
   z-index: 1;
@@ -153,7 +153,7 @@
   left: 0%;
 }
 .linestat{
-  left: 33%
+  left: 50%
 }
 .linevol{
   left: 67%;
