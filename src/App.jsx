@@ -8,16 +8,9 @@ import axios from 'axios';
 function App() {
   
 
-
-
-
-
   return (
-    
 
       <LandingPage></LandingPage>
-    
-    
 
   )
 }
