@@ -39,9 +39,9 @@
 }
 .header {
     width: 600px;
-    min-height: 580px;
+    height: 80vh;
     margin-top: 10px;
-    background: #054916;
+    background: #232631;
     padding: 15px;
     border: 10px solid #0074bd;
     border-radius: 15px;
@@ -128,7 +128,7 @@
     color: #f2f2f2;
     text-align: center;
     letter-spacing: 1px;
-    text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5, -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+    text-shadow: 2px 2px 0 #008542, 2px -2px 0 #008542, -2px 2px 0 #008542, -2px -2px 0 #008542, 2px 0px 0 #008542, 0px 2px 0 #008542, -2px 0px 0 #008542, 0px -2px 0 #008542;
 }
 
 .resultFail{
@@ -169,6 +169,76 @@
 
 .options > button:hover {
     background-color: #6cc8ec;
-    color: rgb(70, 65, 65);
+    
     font-weight: 700;
 }
+
+.optionButton {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 2%;
+    margin-top: 1%;
+    padding: 10px 40px;
+    font-size: 18px;
+    background-color: #008542;
+    color: #fff;
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 0;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: unset;
+    padding: .8rem 1.5rem;
+    text-decoration: none;
+    font-weight: 900;
+    transition: all 0.7s cubic-bezier(0,.8,.26,.99);
+   }
+   
+   .optionButton:before {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    transition: .7s cubic-bezier(0,.8,.26,.99);
+    z-index: -1;
+    background-color: #008542!important;
+    box-shadow: 0 -4px rgb(21 108 0 / 50%) inset, 0 4px rgb(100 253 31 / 99%) inset, -4px 0 rgb(100 253 31 / 50%) inset, 4px 0 rgb(21 108 0 / 50%) inset;
+   }
+   
+   .optionButton:after {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    box-shadow: 0 4px 0 0 rgb(0 0 0 / 15%);
+    transition: .7s cubic-bezier(0,.8,.26,.99);
+   }
+   
+   .optionButton:hover:before {
+    box-shadow: 0 -4px rgb(0 0 0 / 50%) inset, 0 4px rgb(255 255 255 / 20%) inset, -4px 0 rgb(255 255 255 / 20%) inset, 4px 0 rgb(0 0 0 / 50%) inset;
+   }
+   
+   .optionButton:hover:after {
+    box-shadow: 0 4px 0 0 rgb(0 0 0 / 15%);
+   }
+   
+   .optionButton:active {
+    transform: translateY(4px);
+   }
+   
+  .optionButton:active:after {
+    box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
+   }

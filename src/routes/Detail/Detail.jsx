@@ -26,10 +26,6 @@ const Detail = () => {
   const [pokemonLocation, setPokemonLocation] = useState([])
   const [section, setSection] = useState(1);
 
-
-  console.log(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
-  console.log(pokemonSpe)
-
   // Busca Pokemon
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -133,7 +129,7 @@ const Detail = () => {
 
             <div className={style.firstinfo}>
               <div className={style.descripok} style={{ display: 'flex', flexFlow: 'column', alignItems: 'flex-start' }} >
-                <span style={{ color: "black", fontWeight: '500', fontSize: "18px" }}>Description</span>
+                <span style={{ color: "black", fontWeight: '500', fontSize: "18px"}}>Description</span>
                 <span style={{ alignSelf: 'flex-start' }}>
                   {/* Aca va la descripcion, tiene seteado el texto nro 4*/}
 

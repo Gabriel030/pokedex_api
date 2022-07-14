@@ -8,7 +8,7 @@
 }
 
 .home{
-    background: #133D0F;
+    background: #232631;
     min-height: 100vh;
     display: flex;
     justify-content: space-around;
@@ -20,8 +20,10 @@
 
 .fondo{
 
-    background: #0D2B0A;
-    
+    background: #232631;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 
 }
 
@@ -38,7 +40,7 @@
 select {
     cursor: pointer;
     box-shadow: none;
-    background: #164e11;
+    background: #232631;
     width: 8%;
     height: 4%;
     font-size: 0.8em;
@@ -81,6 +83,7 @@ select {
 
 .reload {
     font-family: 'Poppins', sans-serif;
+    max-width: 120px;
     margin-left: 2%;
     margin-top: 1%;
     padding: 10px 40px;
@@ -88,7 +91,7 @@ select {
     background-color: #008542;
     color: #fff;
     text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;

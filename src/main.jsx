@@ -3,31 +3,30 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-//impotar el creador de contexto
-
 import Detail from "./routes/Detail/Detail";
-import Game from "./routes/Game/Game";
 import Home from "./routes/Home/Home";
-import NotFoundError from './components/NotFoundError/NotFoundError'
+import NotFoundError from './components/NotFoundError/NotFoundError';
 
-//rutas
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
+import Game from "./routes/Game/Game";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+
   
-    
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}></Route>
           <Route path="home" element={<Home></Home>}></Route>
           <Route path="detail/:id" element={<Detail></Detail>}></Route>
-          <Route path = "/game" element={<Game />}></Route>
-          <Route path = "*" element ={<NotFoundError/>} ></Route>
+          <Route path="/game" element={<Game />} ></Route>
+          <Route path="*" element={<NotFoundError />} ></Route>
         </Routes>
       </BrowserRouter>
-    
-    
- 
+  
+
+  </React.StrictMode>
+
+
 );

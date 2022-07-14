@@ -125,10 +125,10 @@ useEffect(() => {
               {
                 pokeOptions.length && game === false ?
                 <div className={style.options}>
-                        <button onClick={(e)=> handleOption(e)}> {pokeOptions[0]?.data.name.toUpperCase()} </button>
-                        <button onClick={(e)=> handleOption(e)} > {pokeOptions[1]?.data.name.toUpperCase()} </button>
-                        <button onClick={(e)=> handleOption(e)} > {pokeOptions[2]?.data.name.toUpperCase()} </button>
-                        <button onClick={(e)=> handleOption(e)}> {pokeOptions[3]?.data.name.toUpperCase()} </button>
+                        <button className= {style.optionButton} onClick={(e)=> handleOption(e)}> {pokeOptions[0]?.data.name.toUpperCase()} </button>
+                        <button className= {style.optionButton}onClick={(e)=> handleOption(e)} > {pokeOptions[1]?.data.name.toUpperCase()} </button>
+                        <button className= {style.optionButton}onClick={(e)=> handleOption(e)} > {pokeOptions[2]?.data.name.toUpperCase()} </button>
+                        <button className= {style.optionButton} onClick={(e)=> handleOption(e)}> {pokeOptions[3]?.data.name.toUpperCase()} </button>
                 </div>
                  :
                 <div></div>
@@ -137,10 +137,10 @@ useEffect(() => {
               {
                   game  ? 
                   success ?
-                  <div className={style.result}>
+                  <div className={style.resultOk}>
                       Correct! This pokemon is {chosenPokemon?.data.name}
                   </div> :
-                  <div className={style.result}>
+                  <div className={style.resultFail}>
                       Oops! Incorrect. This pokemon is {chosenPokemon?.data.name}
                   </div>
                   :

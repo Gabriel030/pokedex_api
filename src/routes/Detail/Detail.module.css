@@ -9,10 +9,12 @@
 
 .active{
   filter: opacity(100%);
+  margin-bottom: 2%;
   transition: all 0.2s ease;
 }
 .noactive{
   filter: opacity(50%);
+  margin-bottom: 2%;
 }
 
 
@@ -54,6 +56,7 @@
     display: grid;
     grid-template-columns: [x0] 1.1fr [x1] 2fr [x2];
     grid-template-rows: [y0] 60px [y1] 60px [y2] 2fr [y3] 1fr [y4];
+    background-color: rgb(206, 255, 158);
 }
 
 .firstinfo{
@@ -61,7 +64,8 @@
     width: 94%;
     margin-left: 4%;
     margin-top: 4%;
-    color: rgb(95, 95, 95);
+    font-weight: 600;
+    color: rgb(48, 47, 47);
 }
 
 .importantinfo{
@@ -77,7 +81,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: min-content;
-  color: rgb(41, 41, 41);
+  font-weight: 500;
+  color: rgb(25, 73, 13);
+  
 }
 
 .visual{
@@ -88,7 +94,7 @@
   grid-column: x0 / x1;
   grid-row: y0 / y4;
   height: 100vh;
-  background-color: #ececec;
+  background-color: #fcfcfc;
   
 }  
 
@@ -112,7 +118,7 @@
     font-family: 'Poppins', sans-serif;
     padding-left: 8%;
     padding-right: 8%;
-    color: rgb(41, 41, 41);
+    color: #164e11;
 }
 
 .sections{
@@ -138,25 +144,28 @@
 
 .sections span {
   position: absolute;
-  bottom: -8px;
+  bottom: -25px;
   height: 4px;
   width: 50%;
   transition: all .35s ease-in-out;
   height: 5px;
   z-index: 1;
   border-radius: 0 0 8px 8px;
-  background-color: rgba(15, 15, 170, 0.582);
+  background-color: #30b824
 }
 
 
 .lineab{
   left: 0%;
+  margin-top:3%
 }
 .linestat{
-  left: 50%
+  left: 50%;
+  margin-top:3%
 }
 .linevol{
   left: 67%;
+  margin-top:3%,
 }
 
 
@@ -175,7 +184,7 @@
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-flow: column;
-    width: 500px;
+    width: 87%;
     margin-left: 6%;
     margin-top: 6%;
     color: rgb(41, 41, 41);
@@ -377,7 +386,7 @@
     height: 10px;
     width: 100%;
     left: 0;
-    background: #f0f0f0;
+    background: #69865d;
     position: relative;
     transform: scaleX(0);
     transform-origin: left;
@@ -398,19 +407,10 @@
     border-radius: 10px;
     transform: scaleX(0);
     transform-origin: left;
-    background: #6665ee;
+    background: #f5971d;
     animation: animate 1s 1s cubic-bezier(1,0,0.5,1) forwards;
   }
 
-  .fijo{
-    position: fixed;
-    background-color: #ececec;
-    
-    height: 100%;
-    width: 479px;
-    
-   
-  }
 
   .progress span::before{
     position: absolute;
@@ -496,3 +496,14 @@
     font-weight: 500;
     color: rgb(43, 43, 43);
 }
+
+
+@media (min-width: 800px) and (max-width: 1900px) {
+  .sections span{
+    bottom: -25px;
+
+  }
+}
+
+ 
+
