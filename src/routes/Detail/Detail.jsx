@@ -18,6 +18,8 @@ import Pin from '/images/cards/pin.png';
 import Navbar from '../../components/Navbar/Navbar';
 
 
+
+
 const Detail = () => {
 
   const params = useParams();
