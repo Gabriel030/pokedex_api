@@ -21,7 +21,7 @@
 
 ## Resultados
 ### Video presentacion del proyecto
-
+[![Watch the video](https://raw.githubusercontent.com/Gabriel030/pokedex_api/main/pokedex-api-preview.jpg)](https://vimeo.com/730295951)
 
 
 ## Enunciado
