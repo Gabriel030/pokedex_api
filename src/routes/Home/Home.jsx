@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Paginado from '../../components/Paginado/Paginado';
 import poke from '/images/pokebola.png';
 import pokedex from '/images/pokedex.png';
-import pokeLoading from '/images/pokeloading.gif';
+import pokeLoading from '/images/pokeLoading.gif';
 import notfound from '/images/notfound.png';
 
 import { Link } from 'react-router-dom';
