@@ -1,8 +1,14 @@
-# Individual Project - Api Pokemon
+# Individual Project - pokedex_api
 
 <p align="left">
   <img height="150" src="./pokemon.png" />
 </p>
+
+
+**[LINK TO DEPLOY](https://pokedex-api-gabriel030.vercel.app/)**
+
+
+
 
 ## Objetivos del Proyecto
 
