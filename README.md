@@ -4,8 +4,8 @@
   <img height="150" src="./pokemon.png" />
 </p>
 
-
-**[LINK TO DEPLOY](https://pokedex-api-gabriel030.vercel.app/)**
+# Link del Proyecto - 
+**[POKEDEX](https://pokedex-api-gabriel030.vercel.app/)**
 
 
 
