@@ -23,6 +23,7 @@ const SearchBar = ({searchTerm, handleSearch}) => {
             </form>
         </div>
   )
+  
 }
 
 export default SearchBar
