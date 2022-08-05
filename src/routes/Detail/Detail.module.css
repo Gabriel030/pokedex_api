@@ -9,12 +9,10 @@
 
 .active{
   filter: opacity(100%);
-  margin-bottom: 2%;
   transition: all 0.2s ease;
 }
 .noactive{
   filter: opacity(50%);
-  margin-bottom: 2%;
 }
 
 
@@ -56,7 +54,7 @@
     display: grid;
     grid-template-columns: [x0] 1.1fr [x1] 2fr [x2];
     grid-template-rows: [y0] 60px [y1] 60px [y2] 2fr [y3] 1fr [y4];
-    background-color: rgb(206, 255, 158);
+    background-color: var(--detail-bg);
 }
 
 .firstinfo{
@@ -82,7 +80,7 @@
   align-items: flex-start;
   height: min-content;
   font-weight: 500;
-  color: rgb(25, 73, 13);
+  color: rgb(20, 56, 10);
   
 }
 
@@ -132,6 +130,7 @@
 }
 
 .sections button{
+  position: relative;
   width: 35%;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
@@ -140,32 +139,31 @@
   color: inherit;
   border: none;
   outline: inherit;
+  padding: 0 10%;
 }
+
 
 .sections span {
   position: absolute;
-  bottom: -25px;
+  bottom: -8px;
   height: 4px;
   width: 50%;
   transition: all .35s ease-in-out;
   height: 5px;
   z-index: 1;
   border-radius: 0 0 8px 8px;
-  background-color: #30b824
+  background-color: var(--color-bg-dark);
 }
 
 
 .lineab{
   left: 0%;
-  margin-top:3%
 }
 .linestat{
-  left: 50%;
-  margin-top:3%
+  left: 50%
 }
 .linevol{
   left: 67%;
-  margin-top:3%,
 }
 
 
@@ -184,7 +182,7 @@
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-flow: column;
-    width: 87%;
+    width: 80%;
     margin-left: 6%;
     margin-top: 6%;
     color: rgb(41, 41, 41);
@@ -407,7 +405,7 @@
     border-radius: 10px;
     transform: scaleX(0);
     transform-origin: left;
-    background: #f5971d;
+    background: var(--bar-progress);
     animation: animate 1s 1s cubic-bezier(1,0,0.5,1) forwards;
   }
 
@@ -497,13 +495,56 @@
     color: rgb(43, 43, 43);
 }
 
+@media (max-width:768px){
+  .grid{
+    display:flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    width: 100%;
+    position: relative;   
+  }
 
-@media (min-width: 800px) and (max-width: 1900px) {
+  .visual{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .img {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .firstinfo{
+    background-color: var(--detail-bg);
+    margin: 0px;
+    padding-left: 5%;
+    width: 100%;
+  }
+
+  .importantinfo{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bg{
+    background-color: var(--detail-bg);
+  }
+
+}
+
+@media only screen and (min-width: 1600px) {
+
   .sections span{
-    bottom: -25px;
-
+    bottom: -15px;
   }
 }
 
- 
+@media only screen and (min-width: 2000px) {
 
+  .sections span{
+    bottom: -27px;
+  }
+
+}

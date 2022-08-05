@@ -44,6 +44,7 @@ text-decoration: none;
   grid-column: x0 / x2;
   grid-row: y1/y2;
   max-width: 320px;
+  height: 190px
 }  
 
 .typetitle{
@@ -190,4 +191,17 @@ text-decoration: none;
 
 .shadow{
   color: #453F3A
+}
+
+@media (max-width:768px){
+
+  .img{
+
+    height: 120px
+  }
+
+  .card{
+    width: 280px;
+  }
+  
 }

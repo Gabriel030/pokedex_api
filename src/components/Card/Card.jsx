@@ -46,9 +46,9 @@ const Card = ({poke}) => {
             <span className={style.name}>{poke.name.charAt(0).toUpperCase()+ poke.name.slice(1)}</span>
             {
               poke.id< 100 ?
-              <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found" height="190px" className={style.img} />
+              <img src={`./images/sprites/${poke.id}.gif`} alt="Img not found"  className={style.img} />
               :
-              <img src={`${poke.sprites.other.home.front_default}`}  height="190px" className={style.img} />
+              <img src={`${poke.sprites.other.home.front_default}`}   className={style.img} />
 
             }
             {/* type y su imagen */}

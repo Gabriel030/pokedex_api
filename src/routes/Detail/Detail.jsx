@@ -1,4 +1,3 @@
-
 import style from './Detail.module.css'
 import React from 'react'
 import { useParams } from 'react-router-dom'
@@ -16,8 +15,6 @@ import Happiness from '/images/cards/happy.png';
 import Loading from '/images/pokeLoading.gif';
 import Pin from '/images/cards/pin.png';
 import Navbar from '../../components/Navbar/Navbar';
-
-
 
 
 const Detail = () => {
@@ -78,9 +75,9 @@ const Detail = () => {
 
   return (
 
-    <div>
+    <div className={style.bg} style={ {overflowX: 'hidden'}}>
 
-      <Navbar />
+      <Navbar style={ {overflowX: 'hidden'}} />
 
 
       {pokemon.length === 0 || pokemonSpe.length === 0 ? (
@@ -107,7 +104,7 @@ const Detail = () => {
             
 
               {/* Imagen pokemon */}
-              <img src={pokemon.sprites.other.home.front_default} className={style.img} />
+              <img src={`${pokemon.sprites.other.home.front_default}`} className={style.img} />
 
               {/* Muestra los tipos */}
               <div className={style.types}>
@@ -132,7 +129,7 @@ const Detail = () => {
             <div className={style.firstinfo}>
               <div className={style.descripok} style={{ display: 'flex', flexFlow: 'column', alignItems: 'flex-start' }} >
                 <span style={{ color: "black", fontWeight: '500', fontSize: "18px"}}>Description</span>
-                <span style={{ alignSelf: 'flex-start' }}>
+                <span style={{ alignSelf: 'flex-start', width: '80%' }}>
                   {/* Aca va la descripcion, tiene seteado el texto nro 4*/}
 
                   {pokemonSpe.flavor_text_entries[4].flavor_text}

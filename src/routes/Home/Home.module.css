@@ -7,28 +7,36 @@
     padding-bottom: 2%;   
 }
 
-.home{
-    background: #232631;
-    min-height: 100vh;
+.botones{
     display: flex;
     justify-content: space-around;
+}
+.home{
+    background: var(--color-bg-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     column-gap: 15px;
     row-gap: 15px;
-    padding: 20px;
+    overflow: hidden;
+    
 }
+
 
 .fondo{
 
-    background: #232631;
-    display: flex;
+    background: var(--color-header);
+    display: flex;    
     flex-direction: column;
     flex-wrap: wrap;
+    width: 100%;
 
 }
 
 .sortfilter{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     padding-top: 1%;
 }
@@ -40,7 +48,7 @@
 select {
     cursor: pointer;
     box-shadow: none;
-    background: #232631;
+    background: #164e11;
     width: 8%;
     height: 4%;
     font-size: 0.8em;
@@ -55,10 +63,8 @@ select {
 }
 
 .game{
-    position: absolute;
-    top: 12%;
-    right: 2%;
-    width: 10%;
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
 
 
@@ -83,15 +89,14 @@ select {
 
 .reload {
     font-family: 'Poppins', sans-serif;
-    max-width: 120px;
     margin-left: 2%;
     margin-top: 1%;
-    padding: 10px 40px;
+    margin-bottom: 2%;
     font-size: 18px;
     background-color: #008542;
     color: #fff;
     text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -102,7 +107,7 @@ select {
     text-transform: uppercase;
     letter-spacing: 1px;
     white-space: unset;
-    padding: .8rem 1.5rem;
+    
     text-decoration: none;
     font-weight: 900;
     transition: all 0.7s cubic-bezier(0,.8,.26,.99);
@@ -119,8 +124,8 @@ select {
     content: '';
     transition: .7s cubic-bezier(0,.8,.26,.99);
     z-index: -1;
-    background-color: #008542!important;
-    box-shadow: 0 -4px rgb(21 108 0 / 50%) inset, 0 4px rgb(100 253 31 / 99%) inset, -4px 0 rgb(100 253 31 / 50%) inset, 4px 0 rgb(21 108 0 / 50%) inset;
+    background-color: var(--button-bg)!important;
+    box-shadow: 0 -4px var(--button-shadow-dk) inset, 0 4px var(--button-shadow-lg) inset, -4px 0 var(--button-shadow-lgter) inset, 4px 0 var(--button-shadow-dk) inset;
    }
    
    .reload:after {
@@ -155,3 +160,38 @@ select {
    .reload> img{
     margin-right: 4px;
    }
+
+
+
+   @media (max-width:768px){
+    .reload {
+        font-size: 13px;
+    }
+    .sortOrder{
+        margin-top: 10px;
+    }
+
+    .fondo{
+        overflow-x: hidden;
+    }
+   .botones {
+    display: flex;
+    
+    justify-content:space-around;
+    margin-bottom: 1%;
+   }
+   
+   .game{
+    position: relative;
+    
+    margin-top: 1%;
+   }
+  }
+
+  @media (max-width:420px){
+    .sortfilter{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+  }

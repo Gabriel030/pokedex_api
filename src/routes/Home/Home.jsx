@@ -9,8 +9,7 @@ import poke from '/images/pokebola.png';
 import pokedex from '/images/pokedex.png';
 import pokeLoading from '/images/pokeLoading.gif';
 import notfound from '/images/notfound.png';
-
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Home = () => {
     
@@ -29,19 +28,15 @@ const Home = () => {
    
 
     useEffect(() =>{
-        const getTypes = async () => {
-           
-            try {
-                
+        const getTypes = async () => {           
+            try {                
                 const {data} = await axios("https://pokeapi.co/api/v2/type/")
                 setTypes(data.results)
             } catch (e) {
                 console.log(e)
             }
         }
-
         getTypes()
-
     },[])
 
 
@@ -53,13 +48,10 @@ const Home = () => {
        return Promise.all(
             results.map( async (pokeData) => {
             const pokemon = await axios(pokeData.url);
-            //si el id es mayor a 100, me tengo q traer una imagen de la api
-            
+            //si el id es mayor a 100, me tengo q traer una imagen de la api            
             return pokemon
             })
-        )
-        }
-        
+        )}        
         grabData()
             .then(data => {
            // console.log(data)
@@ -71,8 +63,6 @@ const Home = () => {
 //-----------------------------------------------------------------------------------------------------------------
 
 let filtered = allPokemons
-
-
 
 const filteredList = useMemo(() =>{
     
@@ -143,7 +133,6 @@ const filteredList = useMemo(() =>{
 },[allPokemons, searchTerm, selectedType, order])
 
 
-
 const handleSearch = (e) => {
     setSearchTerm(e.target.value)
 }
@@ -152,104 +141,94 @@ const handleType = (e) => {
     setSelectedType(e.target.value)
 }
 
-
 const handleOrder = (e) => {
     setOrder(e.target.value)
-
 }
 
-
 const reloadAll =  () =>  {
-
     setSearchTerm("")
     setSelectedType("All")
     typeRef.current.value = "All"
     setOrder('normal')
     orderRef.current.value = "normal"
     setCurrentPage(1)
-
 }
 
     return (
-    <div className = {style.fondo}>
-        <Navbar searchTerm ={searchTerm} handleSearch={handleSearch} ></Navbar>
-        <button className={style.reload} onClick={() => reloadAll()}  ><img src={poke} alt="pokebola" width='20px'/> Reload</button>
-
-        
-        <Link to='/game' style={{textDecoration: 'none'}} className={style.game}>
-            <button className={style.reload}>
-                <img src={pokedex} alt="Who's that Pokemon" width='30px'/> Play!
-            </button>
-        </Link>
-
-        <div className={style.sortfilter}>
-                <select className={style.sortOrder} ref={orderRef} onChange={(e)=> handleOrder(e)}>
-                    <option value="normal">Normal</option>
-                    <option value="asc">A - Z</option>
-                    <option value="desc">Z - A</option>
-                
-                </select>
+        <div className = {style.fondo}>
+            <Navbar searchTerm ={searchTerm} handleSearch={handleSearch} ></Navbar>
     
-                <select className={style.sortOrder} ref = {typeRef} onChange= {(e) => handleType(e)}>
-                    <option  value="All">All types</option>
-                    {
-                        types.map( type => (
-                            <option value={type.name} key={type.name}>
-                               {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
-                            </option>
-                        ))
-                    }
-                </select>
-            </div>
-
-
-        <Paginado filteredList = {filteredList} currentPage = {currentPage} setCurrentPage={setCurrentPage}></Paginado>
+            <div className={style.botones}>
+                
+                <button className={style.reload} onClick={() => reloadAll()}  ><img src={poke} alt="pokebola" width='20px'/> Reload</button>
         
-        <div className={style.home}>
-
-                     {/* Si aun no cargo allPokemons, entonces muestro el loading */}
-                {allPokemons.length === 0 
-                ? 
-                (
-                    <h3>
-                        <img src={pokeLoading} className={style.loading} alt="Loading..." width={'300px'}/>
-                    </h3>
-                ) 
-                :
-                filteredList.length === 0 
-                   ?
-                   (
-                    <div className={style.text}>
-                    <img src={notfound} alt="not found" width={'130px'}/>
-                    <h2>Pokemon not found</h2>
-                  </div>
-                   )
-                   :
-                   (
-                    /* si ya cargo el allPokemons entonces mapeo la variable */
-                    filteredList.slice(indexOfFirstPokemon, indexOfLastPokemon).map(poke => {
-                        return (
-                            <Card key={poke.data.id} poke={poke.data}></Card>
-                        )
-                    })
-                   ) 
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-              
+                
+                <NavLink to='/game' style={{textDecoration: 'none'}} className={style.game}>
+                    <button className={style.reload}>
+                        <img src={pokedex} alt="Who's that Pokemon" width='30px'/> Play!
+                    </button>
+                </NavLink>
+        
+            
             </div>
-    </div>
-  )
+            
+    
+            <div className={style.sortfilter}>
+                    <select className={style.sortOrder} ref={orderRef} onChange={(e)=> handleOrder(e)}>
+                        <option value="normal">Normal</option>
+                        <option value="asc">A - Z</option>
+                        <option value="desc">Z - A</option>
+                    
+                    </select>
+        
+                    <select className={style.sortOrder} ref = {typeRef} onChange= {(e) => handleType(e)}>
+                        <option  value="All">All types</option>
+                        {
+                            types.map( type => (
+                                <option value={type.name} key={type.name}>
+                                   {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                                </option>
+                            ))
+                        }
+                    </select>
+                </div>
+    
+    
+            <Paginado filteredList = {filteredList} currentPage = {currentPage} setCurrentPage={setCurrentPage}></Paginado>
+            
+            <div className={style.home}>
+    
+                         {/* Si aun no cargo allPokemons, entonces muestro el loading */}
+                    {allPokemons.length === 0 
+                    ? 
+                    (
+                        <h3>
+                            <img src={pokeLoading} className={style.loading} alt="Loading..." width={'300px'}/>
+                        </h3>
+                    ) 
+                    :
+                    filteredList.length === 0 
+                       ?
+                       (
+                        <div className={style.text}>
+                        <img src={notfound} alt="not found" width={'130px'}/>
+                        <h2>Pokemon not found</h2>
+                      </div>
+                       )
+                       :
+                       (
+                        /* si ya cargo el allPokemons entonces mapeo la variable */
+                        filteredList.slice(indexOfFirstPokemon, indexOfLastPokemon).map(poke => {
+                            return (
+                                <Card key={poke.data.id} poke={poke.data}></Card>
+                            )
+                        })
+                       ) 
+                    }   
+     
+                </div>
+        </div>
+      )
 
 }
 

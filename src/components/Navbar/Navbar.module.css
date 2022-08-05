@@ -1,11 +1,31 @@
 .nav{
-    height: 10vh;
+    
     background-color: #1c231e;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    
     padding-left: 5%;
     padding-right: 5%;
     
+}
+
+@media (max-width:768px){
+    .nav{
+        padding: 0;
+        flex-wrap: wrap;
+
+    }
+    .landinglink img {
+        width: 75px;
+    }
+}
+
+@media (max-width:350px){
+    .nav{
+        flex-direction: column;
+        justify-content:center;
+        flex-wrap: wrap;
+
+    }
 }
