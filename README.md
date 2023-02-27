@@ -23,6 +23,8 @@
 ### Video presentacion del proyecto
 [![Watch the video](https://raw.githubusercontent.com/Gabriel030/pokedex_api/main/pokedex-api-preview.jpg)](https://vimeo.com/730295951)
 
+##Status
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=gabriel030)](https://github.com/anuraghazra/github-readme-stats)
 
 ## Enunciado
 
