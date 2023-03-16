@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 
+.mediumAbout {
+  
+  display:'flex';
+  flex-direction:'column'
+}
+
+.infAbout {
+  display:'flex';
+   flex-direction:'row'
+  }
+
 .link {
 
 text-decoration: none;

@@ -2,42 +2,14 @@ import React from 'react'
 import style from '../Card/Card.module.css'
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { typesColors } from './TypesColors';
 
-
-
-const Card = ({poke}) => {
-      
+const Card = ({poke}) => {     
   
-  const typesColors={
-      fire: style.fire,
-      normal: style.normal,
-      fighting: style.fighting,
-      flying: style.flying,
-      ground: style.ground,
-      poison: style.poison,
-      rock: style.rock,
-      bug: style.bug,
-      ghost: style.ghost,
-      steel: style.steel,
-      water: style.water,
-      grass: style.grass,
-      electric: style.electric,
-      psychic: style.psychic,
-      ice: style.ice,
-      dragon: style.dragon,
-      dark: style.dark,
-      fairy: style.fairy,
-      unknown: style.unknown,
-      shadow: style.shadow
-    }
-
     let sprite = false;
     if(poke.id >= 1 && poke.id <= 100){
         sprite = true
     }
-
-
-
   return (
 
     <Link to = {`/detail/${poke.id}`} className={style.link} >
@@ -52,8 +24,7 @@ const Card = ({poke}) => {
 
             }
             {/* type y su imagen */}
-            <span className={`${style.typetitle}  ${typesColors[2]}`}>Types</span>
-            
+            <span className={`${style.typetitle}  ${typesColors[2]}`}>Types</span>            
             
             <div className={style.types}>
                     {
@@ -73,15 +44,15 @@ const Card = ({poke}) => {
                 <span className={`${style.aboutitle} `}>About</span>
               
                 <div className={style.about}>
-                    <div style={{display:'flex', flexDirection:'column'}}>
-                        <div style={{display:'flex', flexDirection:'row'}}>
+                    <div style={mediumAbout}>
+                        <div style={infAbout}>
                             <img src={'images/cards/weight.svg'} alt='Weight Icon'/>
                             <span className={style.pokweight}>{poke.weight / 10}kg</span>
                         </div>
                         <span className={style.weight}>Weight</span>
                     </div>
                     <div style={{display:'flex', flexDirection:'column', paddingLeft:'24%'}}>
-                        <div style={{display:'flex', flexDirection:'row'}}>
+                        <div style={infAbout}>
                             <img src={'images/cards/height.svg'} alt='Height Icon'/>
                             <span className={style.pokheight}>{poke.height / 10}m</span>
                         </div>

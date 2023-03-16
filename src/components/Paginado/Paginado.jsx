@@ -15,7 +15,6 @@ export default function Paginado({filteredList, currentPage, setCurrentPage}){
     2- 21 
     3 - 40 59
     */
-
     return(
         <nav >
             <ul className={style.pagination}>
